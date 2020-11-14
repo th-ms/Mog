@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Mog</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"/>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&amp;subset=cyrillic">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&amp;subset=cyrillic">
+    <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/fonts/ionicons.min.css">
+    <link rel="stylesheet" href="assets/fonts/material-icons.min.css">
+    <link rel="stylesheet" href="assets/fonts/fontawesome5-overrides.min.css">
+    <link rel="stylesheet" href="assets/css/Navigation-Clean.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/green-audio-player.min.css">
+    <script src="assets/js/green-audio-player.min.js"></script>
+</head>
+
+<body>
+    <div class="d-flex justify-content-end" style="padding-right: 7px;padding-top: 5px;position: fixed;z-index: 99;top:30px;float: right;width: 100%;">
+        <div id="success-message">
+        </div>
+    </div>
+    <div style="-webkit-app-region: drag; background-color: #212121;height: 30px;position:fixed;z-index:10;position: fixed;width: 100%;">
+        <nav class="navbar navbar-light navbar-expand-md" style="margin-right: -20px;margin-top: -5px;z-index: 10;float: right;right: 0;">
+            <div class="container-fluid" style="-webkit-app-region: no-drag;">
+                <i id="minimize" class="far fa-window-minimize menubar-button window-option" style="color:#FFFFFF80;height:23px;"></i>
+                <i id="maximize" class="icon ion-android-checkbox-outline-blank window-option" style="color:#FFFFFF80;"></i>
+                <i id="close" class="icon ion-close window-option" style="color:#FFFFFF80;"></i>
+            </div>
+        </nav>
+    </div>
+    <div id="container" style="padding-top: 25px;height: 100vh;">
+        <div class="row" style="margin: 0px;height: 100%;">
+            <div class="col" style="padding: 0px;padding-left: 0px;max-width: 256px;min-width: 256px;position: fixed;z-index:8;height: 100%;">
+                <div style="background: #000000;width: 100%;height: 100%;">
+                    <div class="row" style="margin-right: 0px;margin-left: 0px;height: 50%;">
+                        <div class="col noselect" style="padding-left: 0px;padding-right: 0px;">
+                            <div style="margin-top: 5px;">
+                                <div id="menuPlaylist" ref="playlistWindow" class="row d-flex align-items-center menuoption" style="margin: 0px;height: 50px;cursor:pointer;" onclick="switchMenu(this)">
+                                    <div class="col text-center" style="max-width: 61px;"><i class="fa fa-play" style="color: inherit;font-size: 20px;"></i></div>
+                                    <div class="col" style="height: 100%;">
+                                        <h5 class="d-flex d-xl-flex align-items-center align-items-xl-center" style="color: inherit;font-family: Roboto, sans-serif;height: 100%;">Playlists</h5>
+                                    </div>
+                                </div>
+                                <div id="menuSearch" ref="searchWindow" class="row d-flex align-items-center menuoption menu-active" style="margin: 0px;height: 50px;cursor:pointer;" onclick="switchMenu(this)">
+                                    <div class="col text-center" style="max-width: 61px;"><i class="fa fa-search" style="color: inherit;font-size: 20px;"></i></div>
+                                    <div class="col" style="height: 100%;">
+                                        <h5 class="d-flex d-xl-flex align-items-center align-items-xl-center" style="color: inherit;font-family: Roboto, sans-serif;height: 100%;">Search</h5>
+                                    </div>
+                                </div>
+                                <div id="menuQueue" ref="queueWindow" class="row d-flex align-items-center menuoption" style="margin: 0px;height: 50px;cursor:pointer;" onclick="switchMenu(this)">
+                                    <div class="col text-center" style="max-width: 61px;padding-top:10px;"><i class="fa fa-list" style="color: inherit;font-size: 20px;"></i></div>
+                                    <div class="col" style="height: 100%;">
+                                        <h5 class="d-flex d-xl-flex align-items-center align-items-xl-center" style="color: inherit;font-family: Roboto, sans-serif;height: 100%;">Queue</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row d-xl-flex align-items-xl-end" style="margin-right: 0px;margin-left: 0px;height: 50%;">
+                        <div class="col" style="padding: 0px;max-width: 256px;"><img id="album" src="assets/img/cowboy%20eating.jpg" style="max-height:512px;width:256px;object-fit: cover;padding-bottom: 125px;" /></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col" style="padding: 0px;padding-left:256px;">
+                <div style="height: 100%;">
+                    <div class="row" style="margin: 0px;height: 100%;">
+                        <div class="col" style="padding: 0px;background: #000000;">
+                            <div style="background:#000000;height: 100%;">
+                                <div id="searchWindow" class="menuWindow" style="background:#000000;height: 99%;">
+                                    <div class="row" style="margin: 0px;position: fixed;width:100%;z-index: 8;background:#000000;">
+                                        <div class="col">
+                                            <div class="row padMar" style="margin-top: 12px;margin-bottom: 12px;padding-right:255px;">
+                                                <div class="col padMar">
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend"></div><input type="text" id="query" class="form-control autocomplete" placeholder="Search" style="outline:0px !important;-webkit-appearance:none;box-shadow: none !important;border-radius: 5px;border-style: none;background: #212121;color:rgb(255,255,255);"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row" style="margin: 0px;padding-top: 60px;">
+                                        <div class="col">
+                                            <div style="padding-top: 10px;">
+                                                <div class="table-responsive">
+                                                    <table class="table" id="songResultTable" style="display:none;">
+                                                        <thead>
+                                                            <tr>
+                                                                <th style="color: #FFFFFF;border-top-style: none;border-bottom-style: none;">Songs</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody id="resultsTable">
+                                                        </tbody>
+                                                    </table>
+                                                    <div id="loadingDiv" class="text-center d-flex justify-content-center align-items-center" style="height: 0px;display:none;"><span id="loadingSpinner" role="status" class="spinner-border spinner-border-sm" style="display:none;color: #ffffff80;width: 256px;height: 256px;font-size: 56px;"></span></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="queueWindow" class="menuWindow" style="background:#000000;height: 99%;display:none;">
+                                    <div class="row" style="margin: 0px;">
+                                        <div class="col">
+                                            <div style="padding-top: 10px;">
+                                                <h1 style="color: #FFFFFF;padding-bottom: 10px;">Queue</h1>
+                                                <div class="table-responsive">
+                                                    <table class="table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th style="border-top-style:none; border-bottom-style: solid;border-bottom-color: rgba(122,119,119,0.13);color: #FFFFFF;width: 400px;min-width: 400px;max-width: 400px;">Title</th>
+                                                                <th style="border-top-style:none; border-bottom-style: solid;border-bottom-color: rgba(122,119,119,0.13);color: #FFFFFF;width: 400px;min-width: 400px;max-width: 400px;">Artist</th>
+                                                                <th style="border-top-style:none; border-bottom-style: solid;border-bottom-color: rgba(122,119,119,0.13);color: #FFFFFF;width: 142px;min-width: 142px;max-width: 142px;">Duration</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody id="currentQueue">
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="music-info">
+        <div class="row d-flex d-xl-flex align-items-end align-items-xl-end" style="margin: 0px;">
+            <div class="col" style="padding: 0px;background: #000000;height: 100px;max-width: 256px;">
+                <div style="height: 100%;margin-top: 16px;">
+                    <h5 id="title" class="text-center" style="padding-left:10px;max-width:240px;color: #FFFFFF;white-space: nowrap;overflow-x:hidden;line-height:normal;text-overflow:ellipsis;font-family: Roboto, sans-serif;">Mog</h5>
+                    <h6 id="artist" class="text-center" style="padding-left:10px;max-width:240px;color: #FFFFFF;white-space: nowrap;overflow-x:hidden;line-height:normal;text-overflow:ellipsis;font-family: Roboto, sans-serif;">Made By Th-mas</h6>
+                </div>
+            </div>
+            <div class="col" style="padding: 0px;background: #000000;height: 100px;max-width: 122px;">
+                <div class="d-xl-flex justify-content-xl-center align-items-xl-center" style="height: 100%;">
+                    <div class="row" style="margin: 0px;margin-top: 2px;">
+                        <div class="col" style="cursor: pointer;" onclick="previousSong()"><i class="fa fa-backward" style="color:#FFFFFF;font-size: 26px;"></i></div>
+                        <div class="col" style="cursor: pointer;" onclick="nextSong()"><i class="fa fa-forward" style="color:#FFFFFF;font-size: 26px;"></i></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col" style="padding: 0px;background: #000000;height: 100px;">
+                <div class="player" style="height: 100%;">
+                    <audio id="music" preload="true" crossorigin oncanplay="myCanPlay()" onended="nextSong()">
+                        <source src="http://localhost:3000/y2">
+                    </audio>
+                    <p id="currentSid" style="display: none;"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+    var queueEmpty = false;
+    var songHistory = [];
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('music').addEventListener('ended', () => {
+            nextSong()
+        })
+        new GreenAudioPlayer('.player', {
+            enableKeystrokes: true
+        });
+        ipc.once('queueResponse', (event, response) => {
+            if (response[0] != null) {
+                var e = response[0]
+                playNowPaused(e.id, e.thumbnail, e.title, e.artist)
+                response.shift()
+                ipc.send('loadedQueue')
+            } else {
+                queueEmpty = true;
+            }
+            response.forEach(e => {
+                var pURL = "http://localhost:3000/play?id=" + e.id
+                preloadAudio(pURL)
+                var table = document.getElementById('currentQueue');
+                var row = table.insertRow(-1);
+                row.id = e.sid;
+                var titleCell = row.insertCell(0);
+                var artistCell = row.insertCell(1);
+                var durationCell = row.insertCell(2);
+                titleCell.style = "border-top-style:none;border-bottom-style: solid;border-bottom-color: rgba(122,119,119,0.13);";
+                artistCell.style = "border-top-style:none;border-bottom-style: solid;border-bottom-color: rgba(122,119,119,0.13);";
+                durationCell.style = "border-top-style:none;border-bottom-style: solid;border-bottom-color: rgba(122,119,119,0.13);";
+                titleCell.innerHTML = `<p style="max-width:370px;color: #FFFFFF;white-space: nowrap;overflow-x:hidden;line-height:normal;text-overflow:ellipsis;">${e.title}</p>`;
+                artistCell.innerHTML = `<p style="max-width:400px;color: #FFFFFF;white-space: nowrap;overflow-x:hidden;line-height:normal;text-overflow:ellipsis;">${e.artist}</p>`;
+                durationCell.innerHTML = `<div class="row" style="max-width:142px;margin: 0px;color: #FFFFFF;">
+                                                <div class="col" style="padding: 0px;">
+                                                    <p style="margin: 0px;">${e.duration}</p>
+                                                </div>
+                                                <div class="col" style="padding: 0px;">
+                                                    <p class="text-right" style="margin: 0px;"><i class="fa fa-close removeQueue" onclick="removeFromQueue(this, '${e.id}', '${e.sid}')" style="font-size: 20px;cursor:pointer;"></i></p>
+                                                </div>
+                                            </div>`
+            })
+        })
+        ipc.send('loadQueue')
+    });
+    window.onload = function() {
+        const remote = require('electron').remote
+        document.getElementById('close').addEventListener('click', () => {
+            var window = remote.getCurrentWindow();
+            window.close();
+        });
+        document.getElementById('minimize').addEventListener('click', () => {
+            var window = remote.getCurrentWindow();
+            window.minimize();
+        });
+        document.getElementById('maximize').addEventListener('click', () => {
+            var window = remote.getCurrentWindow();
+            window.isMaximized() ? window.unmaximize() : window.maximize();
+        });
+    }
+    var ipc = require('electron').ipcRenderer;
+    var loadedAudio = []
+
+    function preloadAudio(url) {
+        var audio = new Audio();
+        audio.addEventListener('canplaythrough', (event) => {
+            loadedAudio.push(url)
+        }, false);
+        audio.src = url;
+    }
+
+    function nextSong() {
+        ipc.on('nSR', (event, response) => {
+            if (response.error == 0) {
+            } else {
+                alert('Skipped Song', 'primary')
+                reloadQueue()
+                document.getElementsByClassName('play-pause-btn')[0].style.visibility = 'hidden';
+                document.getElementsByClassName('loading')[0].style.visibility = 'visible';
+                var player = document.getElementById('music');
+                player.src = "http://localhost:3000/play?id=" + response.id;
+                player.currentTime = 0;
+                player.play()
+                document.getElementById('album').src = response.thumbnail;
+                document.getElementById('title').textContent = response.title;
+                document.getElementById('artist').textContent = response.artist;
+                document.getElementById('currentSid').textContent = response.sid;
+                queuing = true
+            }
+        })
+        var duration = document.getElementsByClassName('controls__total-time')[0].textContent;
+        if (duration.substr(0, 3) == "00:") {
+            duration = duration.slice(3)
+        }
+        if (duration.substr(0, 1) == "0") {
+            duration = duration.slice(1)
+        }
+        var data = {
+            'id': document.getElementById('music').src.split('id=')[1],
+            'title': document.getElementById('title').textContent,
+            'artist': document.getElementById('artist').textContent,
+            'thumbnail': document.getElementById('album').src,
+            'duration': duration,
+            'sid': document.getElementById('currentSid').textContent
+        }
+        songHistory.push(data)
+        ipc.send('nextSong')
+    }
+
+    function previousSong() {
+        if (songHistory.length > 0) {
+            var duration = document.getElementsByClassName('controls__total-time')[0].textContent;
+            if (duration.substr(0, 3) == "00:") {
+                duration = duration.slice(3)
+            }
+            if (duration.substr(0, 1) == "0") {
+                duration = duration.slice(1)
+            }
+            var id = document.getElementById('music').src.split('id=')[1],
+                title = document.getElementById('title').textContent,
+                artist = document.getElementById('artist').textContent,
+                thumbnail = document.getElementById('album').src,
+                sid = document.getElementById('currentSid').textContent,
+                front = true
+            addToQueue(id, title, artist, duration, thumbnail, sid, front)
+            playPreviousSong()
+        }
+    }
+
+    function playPreviousSong(){
+        var song = songHistory[songHistory.length - 1];
+        songHistory.pop();
+        alert('Previous Song', 'primary')
+        document.getElementsByClassName('play-pause-btn')[0].style.visibility = 'hidden';
+        document.getElementsByClassName('loading')[0].style.visibility = 'visible';
+        var player = document.getElementById('music');
+        player.src = "http://localhost:3000/play?id=" + song.id;
+        player.currentTime = 0;
+        player.play()
+        document.getElementById('album').src = song.thumbnail;
+        document.getElementById('title').textContent = song.title;
+        document.getElementById('artist').textContent = song.artist;
+        document.getElementById('currentSid').textContent = song.sid;
+        queuing = true
+    }
+
+    function reloadQueue() {
+        ipc.once('rLQR', (event, response) => {
+            document.getElementById('currentQueue').innerHTML = '';
+            response.forEach(e => {
+                var pURL = "http://localhost:3000/play?id=" + e.id
+                preloadAudio(pURL)
+                var table = document.getElementById('currentQueue');
+                var row = table.insertRow(-1);
+                row.id = e.sid;
+                var titleCell = row.insertCell(0);
+                var artistCell = row.insertCell(1);
+                var durationCell = row.insertCell(2);
+                titleCell.style = "border-top-style:none;border-bottom-style: solid;border-bottom-color: rgba(122,119,119,0.13);";
+                artistCell.style = "border-top-style:none;border-bottom-style: solid;border-bottom-color: rgba(122,119,119,0.13);";
+                durationCell.style = "border-top-style:none;border-bottom-style: solid;border-bottom-color: rgba(122,119,119,0.13);";
+                titleCell.innerHTML = `<p style="color: #FFFFFF;white-space: nowrap;overflow-x:hidden;line-height:normal;text-overflow:ellipsis;">${e.title}</p>`;
+                artistCell.innerHTML = `<p style="color: #FFFFFF;white-space: nowrap;overflow-x:hidden;line-height:normal;text-overflow:ellipsis;">${e.artist}</p>`;
+                durationCell.innerHTML = `<div class="row" style="margin: 0px;color: #FFFFFF;">
+                                            <div class="col" style="padding: 0px;">
+                                                <p style="margin: 0px;">${e.duration}</p>
+                                            </div>
+                                            <div class="col" style="padding: 0px;">
+                                                <p class="text-right" style="margin: 0px;"><i class="fa fa-close removeQueue" onclick="removeFromQueue(this, '${e.id}', '${e.sid}')" style="font-size: 20px;cursor:pointer;"></i></p>
+                                            </div>
+                                        </div>`
+            })
+        })
+        ipc.send('reloadQueue')
+    }
+
+    function displayResults(resp) {
+        var table = document.getElementById('resultsTable');
+        table.innerHTML = '';
+        JSON.parse(resp).forEach(track => {
+            var safeTitle = track.title.replace(/'/g, "\\'");
+            var safeArtist = track.channel.name.replace(/'/g, "\\'");
+            var seconds = parseInt(track.duration) - 1;
+            var duration = new Date(seconds * 1000).toISOString().substr(11, 8);
+            if (duration.substr(0, 3) == "00:") {
+                duration = duration.slice(3)
+            }
+            if (duration.substr(0, 1) == "0") {
+                duration = duration.slice(1)
+            }
+            var row = table.insertRow(-1);
+            var songCell = row.insertCell(0);
+            row.style = 'border-bottom-style: solid;border-bottom-color: rgba(122,119,119,0.13);';
+            songCell.style = 'border-top-style: none;';
+            songCell.innerHTML = `<div class="row" style="margin: 0px;">
+                                            <div class="col" style="padding: 0px;max-width: 64px;"><img src="${track.thumbnail}" style="width: 64px;height: 64px;object-fit:cover;" /></div>
+                                            <div class="col" style="padding: 0px;">
+                                                <div class="row" style="margin: 0px;">
+                                                    <div class="col d-xl-flex align-items-xl-center">
+                                                        <h5 style="color: #FFFFFF;">${safeTitle}</h5>
+                                                    </div>
+                                                </div>
+                                                <div class="row" style="margin: 0px;">
+                                                    <div class="col">
+                                                        <h6 style="color: #AAAAAA;">${duration} - ${safeArtist}</h6>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col d-xl-flex justify-content-xl-end align-items-xl-center" style="padding: 0px;">
+                                                <div class="row" style="margin: 0px;">
+                                                    <div class="col">
+                                                        <div class="text-right">
+                                                            <i class="fa fa-play resultOption" style="font-size: 25px;padding: 5px;" onclick="playNow('${track.id}','${track.thumbnail}','${safeTitle}','${safeArtist}','${duration}')"></i>
+                                                            <i class="fa fa-plus resultOption" style="font-size: 25px;padding: 5px;" onclick="addToQueue('${track.id}','${safeTitle}','${safeArtist}','${duration}','${track.thumbnail}')"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>`;
+        })
+    }
+
+    function makeid(length) {
+        var result = '';
+        var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        var charactersLength = characters.length;
+        for (var i = 0; i < length; i++) {
+            result += characters.charAt(Math.floor(Math.random() * charactersLength));
+        }
+        return result;
+    }
+    var queuing = false;
+
+    function playNow(id, thumbnail, title, artist) {
+        document.getElementsByClassName('play-pause-btn')[0].style.visibility = 'hidden';
+        document.getElementsByClassName('loading')[0].style.visibility = 'visible';
+        var player = document.getElementById('music')
+        player.src = "http://localhost:3000/play?id=" + id;
+        player.currentTime = 0;
+        player.play()
+        document.getElementById('album').src = thumbnail;
+        document.getElementById('title').textContent = title;
+        document.getElementById('artist').textContent = artist;
+        queuing = true;
+    }
+
+    function playNowPaused(id, thumbnail, title, artist) {
+        document.getElementsByClassName('play-pause-btn')[0].style.visibility = 'hidden';
+        document.getElementsByClassName('loading')[0].style.visibility = 'visible';
+        var player = document.getElementById('music')
+        player.src = "http://localhost:3000/play?id=" + id;
+        player.currentTime = 0;
+        document.getElementById('album').src = thumbnail;
+        document.getElementById('title').textContent = title;
+        document.getElementById('artist').textContent = artist;
+    }
+
+    function myCanPlay() {
+        if (queuing == true) {
+            document.getElementsByClassName('loading')[0].style.visibility = 'hidden';
+            document.getElementsByClassName('play-pause-btn')[0].style.visibility = 'visible';
+            document.getElementsByClassName('play-pause-btn')[0].setAttribute('aria-label', 'Pause');
+            document.getElementsByClassName('play-pause-btn__icon')[0].setAttribute('d', 'M0 0h6v24H0zM12 0h6v24h-6z');
+            queuing = false;
+        }
+    }
+
+    function addToQueue(id, title, artist, duration, thumbnail, sid, front) {
+        front = front || false;
+        if (queueEmpty == true && document.getElementById('music').getElementsByTagName('source')[0].src == "http://localhost:3000/y2") {
+            playNow(id, thumbnail, title, artist, duration)
+            alert('Added to Queue', 'success')
+            queueEmpty = false;
+        } else {
+            sid = sid || id + makeid(9)
+            ipc.once('response', (event, response) => {
+                if (response == 'DONE') {
+                    var pURL = "http://localhost:3000/play?id=" + id
+                    preloadAudio(pURL)
+                    var table = document.getElementById('currentQueue');
+                    if (front){
+                        var row = table.insertRow(0);
+                    } else {
+                        var row = table.insertRow(-1);
+                    }
+                    row.id = sid;
+                    var titleCell = row.insertCell(0);
+                    var artistCell = row.insertCell(1);
+                    var durationCell = row.insertCell(2);
+                    titleCell.style = "border-top-style:none;border-bottom-style: solid;border-bottom-color: rgba(122,119,119,0.13);";
+                    artistCell.style = "border-top-style:none;border-bottom-style: solid;border-bottom-color: rgba(122,119,119,0.13);";
+                    durationCell.style = "border-top-style:none;border-bottom-style: solid;border-bottom-color: rgba(122,119,119,0.13);";
+                    titleCell.innerHTML = `<p style="max-width:370px;color: #FFFFFF;white-space: nowrap;overflow-x:hidden;line-height:normal;text-overflow:ellipsis;">${title}</p>`;
+                    artistCell.innerHTML = `<p style="max-width:400px;color: #FFFFFF;white-space: nowrap;overflow-x:hidden;line-height:normal;text-overflow:ellipsis;">${artist}</p>`;
+                    durationCell.innerHTML = `<div class="row" style="max-width:142px;margin: 0px;color: #FFFFFF;">
+                                                <div class="col" style="padding: 0px;">
+                                                    <p style="margin: 0px;">${duration}</p>
+                                                </div>
+                                                <div class="col" style="padding: 0px;">
+                                                    <p class="text-right" style="margin: 0px;"><i class="fa fa-close removeQueue" onclick="removeFromQueue(this, '${id}', '${sid}')" style="font-size: 20px;cursor:pointer;"></i></p>
+                                                </div>
+                                            </div>`
+                    if (!front) {
+                        alert('Added to Queue', 'success')
+                    }
+                }
+            })
+            ipc.send('addToQueue', {
+                'id': id,
+                'title': title,
+                'artist': artist,
+                'thumbnail': thumbnail,
+                'duration': duration,
+                'sid': sid,
+                'front':front
+            })
+        }
+    }
+
+    function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+    async function alert(message, status) {
+        var str = `<div class="row" style="opacity:0%;">
+                    <div class="col">
+                        <div role="alert" class="alert alert-${status}" style="text-align:center;margin-top:5px;max-width: 200px;"><span><strong>${message}</strong></span></div>
+                        </div>
+                </div>`;
+        var div = document.createElement('div');
+        div.innerHTML = str;
+        document.getElementById('success-message').innerHTML = '';
+        var t = document.getElementById('success-message').insertBefore(div.children[0], document.getElementById('success-message').childNodes[0]);
+        for (i = 0; i <= 100; i++) {
+            t.style.opacity = i + '%';
+            await sleep(5);
+        }
+        await sleep(1000)
+        for (i = 0; i <= 100; i++) {
+            t.style.opacity = (100 - i) + '%';
+            await sleep(5);
+        }
+        t.remove()
+
+    }
+
+    function removeFromQueue(song, id, sid) {
+        ipc.on('qRR', (event, response) => {
+            if (response == sid) {
+                var row = document.getElementById(sid);
+                document.getElementById('currentQueue').removeChild(row);
+                alert('Removed from Queue', 'warning')
+            }
+        })
+        ipc.send('removeFromQueue', {
+            'sid': sid
+        })
+    }
+    document.getElementById('query').addEventListener("keyup", function(event) {
+        if (event.keyCode === 13) {
+            event.preventDefault();
+            keywordSearch();
+        }
+    });
+
+    function keywordSearch() {
+        document.getElementById('loadingDiv').style.height = '500px';
+        document.getElementById('loadingDiv').style.display = '';
+        document.getElementById('loadingSpinner').style.display = '';
+        document.getElementById('songResultTable').style.display = 'none';
+        var query = document.getElementById('query').value;
+        if (query.length > 0) {
+            var data = {
+                "query": query,
+            };
+            var json = JSON.stringify(data);
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4) {
+                    document.getElementById('loadingDiv').style.height = '0px';
+                    document.getElementById('loadingDiv').style.display = 'none';
+                    document.getElementById('loadingSpinner').style.display = 'none';
+                    document.getElementById('songResultTable').style.display = '';
+                    displayResults(xhr.response);
+                }
+            }
+            xhr.open("POST", "http://localhost:3000/search");
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.send(json);
+        }
+    }
+
+    function switchMenu(option) {
+        [...document.getElementsByClassName('menu-active')].forEach(e => e.classList.remove('menu-active'))
+        option.classList.add('menu-active');
+        [...document.getElementsByClassName('menuWindow')].forEach(e => {
+            e.style.display = 'none'
+        })
+        document.getElementById(option.getAttribute('ref')).style.display = '';
+    }
+    </script>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+</body>
+
+</html>

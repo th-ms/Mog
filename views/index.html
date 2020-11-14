@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Mog</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&amp;subset=cyrillic">
+    <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/fonts/ionicons.min.css">
+    <link rel="stylesheet" href="assets/fonts/fontawesome5-overrides.min.css">
+    <link rel="stylesheet" href="assets/css/Navigation-Clean.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+<body>
+    <div id="navbar" style="max-height: 25px;background: #23272a;max-width: 100%;">
+        <div class="row d-xl-flex justify-content-xl-end" style="margin: 0px;max-height: 30px;height: 100%;">
+            <div class="col d-xl-flex justify-content-xl-center align-items-xl-center" style="height: 25px;max-width: 30px;"><i class="far fa-window-minimize" style="color: #99aab5;"></i></div>
+            <div class="col d-xl-flex justify-content-xl-center align-items-xl-center" style="height: 25px;max-width: 30px;"><i class="icon ion-android-checkbox-outline-blank" style="color: #99aab5;font-size: 22px;"></i></div>
+            <div class="col d-xl-flex justify-content-xl-center align-items-xl-center" style="height: 25px;max-width: 30px;"><i class="icon ion-close" style="color: #99aab5;font-size: 21px;"></i></div>
+        </div>
+    </div>
+    <div id="container" style="padding-top: 25px;height: 100vh;">
+        <div class="row" style="margin: 0px;height: 100%;">
+            <div class="col" style="padding: 0px;padding-left: 0px;max-width: 256px;">
+                <div style="background: #2c2f33;width: 100%;height: 100%;">
+                    <div class="row" style="margin-right: 0px;margin-left: 0px;height: 100%;">
+                        <div class="col">
+                            <div style="margin-top: 7px;">
+                                <div class="row d-flex align-items-center" style="margin: 0px;height: 50px;">
+                                    <div class="col text-center" style="max-width: 61px;"><i class="fa fa-play" style="color: rgb(153,170,181);font-size: 20px;"></i></div>
+                                    <div class="col" style="height: 100%;">
+                                        <h5 class="d-flex d-xl-flex align-items-center align-items-xl-center" style="color: rgb(153,170,181);font-family: Montserrat, sans-serif;height: 100%;">Playlists</h5>
+                                    </div>
+                                </div>
+                                <div class="row d-flex align-items-center" style="margin: 0px;height: 50px;">
+                                    <div class="col text-center" style="max-width: 61px;"><i class="fa fa-compass" style="color: rgb(153,170,181);font-size: 20px;"></i></div>
+                                    <div class="col" style="height: 100%;">
+                                        <h5 class="d-flex d-xl-flex align-items-center align-items-xl-center" style="color: rgb(153,170,181);font-family: Montserrat, sans-serif;height: 100%;">Browse</h5>
+                                    </div>
+                                </div>
+                                <div class="row d-flex align-items-center" style="margin: 0px;height: 50px;">
+                                    <div class="col text-center" style="max-width: 61px;"><i class="fa fa-cloud-download" style="color: rgb(153,170,181);font-size: 20px;"></i></div>
+                                    <div class="col" style="height: 100%;">
+                                        <h5 class="d-flex d-xl-flex align-items-center align-items-xl-center" style="color: rgb(153,170,181);font-family: Montserrat, sans-serif;height: 100%;">Saved</h5>
+                                    </div>
+                                </div>
+                                <div class="row d-flex align-items-center" style="margin: 0px;height: 50px;">
+                                    <div class="col text-center" style="max-width: 61px;"><i class="fa fa-search" style="color: rgb(153,170,181);font-size: 20px;"></i></div>
+                                    <div class="col" style="height: 100%;">
+                                        <h5 class="d-flex d-xl-flex align-items-center align-items-xl-center" style="color: rgb(153,170,181);font-family: Montserrat, sans-serif;height: 100%;">Search</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col" style="padding: 0px;">
+                <div style="height: 100%;">
+                    <div class="row" style="margin: 0px;height: 100%;">
+                        <div class="col" style="padding: 0px;background: #2c2f33;">
+                            <div style="background: #383d44;height: 100%;">
+                                <div id="searchWindow" style="background: #383d44;height: 99%;">
+                                    <div class="row" style="margin: 0px;">
+                                        <div class="col">
+                                            <div class="row padMar" style="margin-top: 12px;margin-bottom: 12px;">
+                                                <div class="col padMar">
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend"></div><input class="form-control autocomplete" type="text" placeholder="Search..." style="border-top-left-radius: 5px;border-bottom-left-radius: 5px;border-style: none;background: rgb(140,140,140);color: rgb(255,255,255);">
+                                                        <div
+                                                            class="input-group-append"><button class="btn" type="button" style="background: #787878;"><i class="fa fa-search"></i></button></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row" style="margin: 0px;">
+                                    <div class="col">
+                                        <div>
+                                            <h1 style="color: rgb(0,0,0);">Results</h1>
+                                            <div class="row row-cols-3" style="margin: 0px;">
+                                                <div class="col" style="padding-top: 15px;padding-bottom: 15px;">
+                                                    <div class="card" style="background: rgb(44,47,51);">
+                                                        <div class="card-body text-center" style="border-style: none;">
+                                                            <h4 class="card-title" style="color: rgb(255,255,255);">Sex Money Feeling....</h4>
+                                                            <div class="row" style="margin: 0px;height: 40px;">
+                                                                <div class="col d-xl-flex justify-content-xl-start">
+                                                                    <h6 class="text-muted mb-2">Duration - 2:54</h6>
+                                                                </div>
+                                                                <div class="col d-flex justify-content-center" style="max-width: 60px;">
+                                                                    <h6 class="text-muted mb-2" style="width: 52px;"><a href="#">Source</a></h6>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row" style="margin: 0px;">
+                                                                <div class="col" style="padding: 0px;"><i class="fa fa-play" style="color: rgb(255,255,255);font-size: 20px;"></i></div>
+                                                                <div class="col" style="padding: 0px;"><i class="fa fa-download" style="color: rgb(255,255,255);font-size: 20px;"></i></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col" style="padding-top: 15px;padding-bottom: 15px;">
+                                                    <div class="card" style="background: rgb(44,47,51);">
+                                                        <div class="card-body text-center" style="border-style: none;">
+                                                            <h4 class="card-title" style="color: rgb(255,255,255);">Sex Money Feeling....</h4>
+                                                            <div class="row" style="margin: 0px;height: 40px;">
+                                                                <div class="col d-xl-flex justify-content-xl-start">
+                                                                    <h6 class="text-muted mb-2">Duration - 2:54</h6>
+                                                                </div>
+                                                                <div class="col d-flex justify-content-center" style="max-width: 60px;">
+                                                                    <h6 class="text-muted mb-2" style="width: 52px;"><a href="#">Source</a></h6>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row" style="margin: 0px;">
+                                                                <div class="col" style="padding: 0px;"><i class="fa fa-play" style="color: rgb(255,255,255);font-size: 20px;"></i></div>
+                                                                <div class="col" style="padding: 0px;"><i class="fa fa-download" style="color: rgb(255,255,255);font-size: 20px;"></i></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col" style="padding-top: 15px;padding-bottom: 15px;">
+                                                    <div class="card" style="background: rgb(44,47,51);">
+                                                        <div class="card-body text-center" style="border-style: none;">
+                                                            <h4 class="card-title" style="color: rgb(255,255,255);">Sex Money Feeling....</h4>
+                                                            <div class="row" style="margin: 0px;height: 40px;">
+                                                                <div class="col d-xl-flex justify-content-xl-start">
+                                                                    <h6 class="text-muted mb-2">Duration - 2:54</h6>
+                                                                </div>
+                                                                <div class="col d-flex justify-content-center" style="max-width: 60px;">
+                                                                    <h6 class="text-muted mb-2" style="width: 52px;"><a href="#">Source</a></h6>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row" style="margin: 0px;">
+                                                                <div class="col" style="padding: 0px;"><i class="fa fa-play" style="color: rgb(255,255,255);font-size: 20px;"></i></div>
+                                                                <div class="col" style="padding: 0px;"><i class="fa fa-download" style="color: rgb(255,255,255);font-size: 20px;"></i></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col" style="padding-top: 15px;padding-bottom: 15px;">
+                                                    <div class="card" style="background: rgb(44,47,51);">
+                                                        <div class="card-body text-center" style="border-style: none;">
+                                                            <h4 class="card-title" style="color: rgb(255,255,255);">Sex Money Feeling....</h4>
+                                                            <div class="row" style="margin: 0px;height: 40px;">
+                                                                <div class="col d-xl-flex justify-content-xl-start">
+                                                                    <h6 class="text-muted mb-2">Duration - 2:54</h6>
+                                                                </div>
+                                                                <div class="col d-flex justify-content-center" style="max-width: 60px;">
+                                                                    <h6 class="text-muted mb-2" style="width: 52px;"><a href="#">Source</a></h6>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row" style="margin: 0px;">
+                                                                <div class="col" style="padding: 0px;"><i class="fa fa-play" style="color: rgb(255,255,255);font-size: 20px;"></i></div>
+                                                                <div class="col" style="padding: 0px;"><i class="fa fa-download" style="color: rgb(255,255,255);font-size: 20px;"></i></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col" style="padding-top: 15px;padding-bottom: 15px;">
+                                                    <div class="card" style="background: rgb(44,47,51);">
+                                                        <div class="card-body text-center" style="border-style: none;">
+                                                            <h4 class="card-title" style="color: rgb(255,255,255);">Sex Money Feeling....</h4>
+                                                            <div class="row" style="margin: 0px;height: 40px;">
+                                                                <div class="col d-xl-flex justify-content-xl-start">
+                                                                    <h6 class="text-muted mb-2">Duration - 2:54</h6>
+                                                                </div>
+                                                                <div class="col d-flex justify-content-center" style="max-width: 60px;">
+                                                                    <h6 class="text-muted mb-2" style="width: 52px;"><a href="#">Source</a></h6>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row" style="margin: 0px;">
+                                                                <div class="col" style="padding: 0px;"><i class="fa fa-play" style="color: rgb(255,255,255);font-size: 20px;"></i></div>
+                                                                <div class="col" style="padding: 0px;"><i class="fa fa-download" style="color: rgb(255,255,255);font-size: 20px;"></i></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col" style="padding-top: 15px;padding-bottom: 15px;">
+                                                    <div class="card" style="background: rgb(44,47,51);">
+                                                        <div class="card-body text-center" style="border-style: none;">
+                                                            <h4 class="card-title" style="color: rgb(255,255,255);">Sex Money Feeling....</h4>
+                                                            <div class="row" style="margin: 0px;height: 40px;">
+                                                                <div class="col d-xl-flex justify-content-xl-start">
+                                                                    <h6 class="text-muted mb-2">Duration - 2:54</h6>
+                                                                </div>
+                                                                <div class="col d-flex justify-content-center" style="max-width: 60px;">
+                                                                    <h6 class="text-muted mb-2" style="width: 52px;"><a href="#">Source</a></h6>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row" style="margin: 0px;">
+                                                                <div class="col" style="padding: 0px;"><i class="fa fa-play" style="color: rgb(255,255,255);font-size: 20px;"></i></div>
+                                                                <div class="col" style="padding: 0px;"><i class="fa fa-download" style="color: rgb(255,255,255);font-size: 20px;"></i></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div id="music-info">
+        <div class="row d-flex d-xl-flex align-items-end align-items-xl-end" style="margin: 0px;">
+            <div class="col" style="padding: 0px;max-width: 256px;"><img src="assets/img/cowboy%20eating.jpg"></div>
+            <div class="col" style="padding: 0px;background: #2c2f33;height: 100px;">
+                <div class="d-flex d-xl-flex justify-content-center align-items-center justify-content-xl-center align-items-xl-center" style="height: 100%;">
+                    <h1 class="text-center" style="color: rgb(153,170,181);">Player Info Here</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+</body>
+
+</html>
